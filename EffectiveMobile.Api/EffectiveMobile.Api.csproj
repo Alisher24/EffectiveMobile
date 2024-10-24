@@ -12,7 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
+      <ProjectReference Include="..\EffectiveMobile.Application\EffectiveMobile.Application.csproj" />
+      <ProjectReference Include="..\EffectiveMobile.Infrastructure\EffectiveMobile.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

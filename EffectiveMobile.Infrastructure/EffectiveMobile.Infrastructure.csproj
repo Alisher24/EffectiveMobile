@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\EffectiveMobile.Application\EffectiveMobile.Application.csproj" />
+      <ProjectReference Include="..\EffectiveMobile.Domain\EffectiveMobile.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
