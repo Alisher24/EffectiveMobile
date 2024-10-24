@@ -1,0 +1,6 @@
+@EffectiveMobile.Web_HostAddress = http://localhost:5037
+
+GET {{EffectiveMobile.Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
