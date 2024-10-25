@@ -7,6 +7,7 @@ namespace EffectiveMobile.Infrastructure;
 public class OrderRepository(string ordersPath, string districtsPath, string deliveryOrder)
     : IOrderRepository
 {
+    /// <inheritdoc />
     public async Task<Result> AddOrderAsync(Order order, CancellationToken cancellationToken = default)
     {
         if (File.Exists(ordersPath) == false)
@@ -21,6 +22,7 @@ public class OrderRepository(string ordersPath, string districtsPath, string del
         return Result.Success();
     }
 
+    /// <inheritdoc />
     public async Task<Result<List<OrderDto>>> FilteringOrdersByDistrict(
         string district,
         DateTime firstOrderTime,
@@ -41,7 +43,7 @@ public class OrderRepository(string ordersPath, string districtsPath, string del
         {
             var orderArr = orderText.Split(";");
             var orderId = Guid.Parse(orderArr[0]);
-            var orderWeight = orderArr[1];
+            var orderWeight = orderArr[1] + " kg";
             var orderDistrict = orderArr[2];
             var orderDeliveryTime = DateTime.Parse(orderArr[3]);
 

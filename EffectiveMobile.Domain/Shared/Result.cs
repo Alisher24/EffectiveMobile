@@ -14,12 +14,12 @@ public class Result
         IsSuccess = isSuccess;
     }
 
-    
+
     public ErrorList ErrorList { get; }
     public bool IsSuccess { get; }
-    
+
     public bool IsFailure => !IsSuccess;
-    
+
     public static Result Success() => new(true, new ErrorList([]));
 
     public static implicit operator Result(Error error) => new(false, new ErrorList([error]));

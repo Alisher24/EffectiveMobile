@@ -33,7 +33,7 @@ public class AddOrderService(
         
         logger.LogInformation("Added order with id {id}", order.Id);
         
-        return Result.Success();
+        return result;
     }
 
     private Order InitOrder(AddOrderRequest request)
