@@ -19,8 +19,10 @@ public class AddOrderService(
 
         var order = InitOrder(request);
         
-        await orderRepository.AddOrderAsync(order, cancellationToken);
-
+        var result = await orderRepository.AddOrderAsync(order, cancellationToken);
+        if (result.IsFailure)
+            return result.ErrorList;
+        
         return Result.Success();
     }
 

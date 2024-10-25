@@ -31,6 +31,14 @@ public class Error
             $"{label} is invalid");
     }
     
+    public static Error ValueNotFound(string? name = null)
+    {
+        var label = name ?? "Value";
+            
+        return Validation("value.not.found", 
+            $"{label} not found");
+    }
+    
     public static Error Failure(string code, string message) =>
         new(code, message, ErrorType.Failure);
     

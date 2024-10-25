@@ -9,8 +9,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IValidator<AddOrderRequest>, AddOrderValidator>();
-builder.Services.AddScoped<IOrderRepository>(_ =>
-    new OrderRepository(builder.Configuration["Orders:FileName"] ?? throw new ArgumentNullException()));
+builder.Services.AddScoped<IOrderRepository>(_ => new OrderRepository(
+    builder.Configuration["Data:OrdersPath"] ?? throw new ArgumentNullException(),
+    builder.Configuration["Data:DistrictsPath"] ?? throw new ArgumentNullException()));
 builder.Services.AddScoped<AddOrderService>();
 
 builder.Services.AddControllers();
