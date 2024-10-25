@@ -1,4 +1,5 @@
 ﻿using EffectiveMobile.Application.AddOrder;
+using EffectiveMobile.Application.FilteringOrdersByDistrict;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EffectiveMobile.Api.Controllers;
@@ -18,5 +19,18 @@ public class OrdersController : ControllerBase
             return result.ErrorList.ToResponse();
 
         return Ok();
+    }
+
+    [HttpGet("districts")]
+    public async Task<ActionResult> GetFilteringOrdersByDistrict(
+        [FromServices] FilteringOrdersByDistrictService service,
+        [FromQuery] FilteringOrdersByDistrictRequest request,
+        CancellationToken cancellationToken)
+    {
+        var result = await service.ExecuteAsync(request, cancellationToken);
+        if (result.IsFailure)
+            return result.ErrorList.ToResponse();
+
+        return Ok(result);
     }
 }

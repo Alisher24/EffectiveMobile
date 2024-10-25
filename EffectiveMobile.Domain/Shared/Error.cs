@@ -42,6 +42,14 @@ public class Error
     public static Error Failure(string code, string message) =>
         new(code, message, ErrorType.Failure);
     
+    public static Error FileNotExist(string? name = null)
+    {
+        var label = name ?? "File";
+            
+        return Failure("file.not.exist", 
+            $"{label} not exist");
+    }
+    
     public string Serialize()
     {
         return string.Join(Separator, Code, Message, Type);
