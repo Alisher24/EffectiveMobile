@@ -2,12 +2,14 @@
 using EffectiveMobile.Domain.Shared;
 using EffectiveMobile.Domain.ValueObjects;
 using FluentValidation;
+using Microsoft.Extensions.Logging;
 
 namespace EffectiveMobile.Application.AddOrder;
 
 public class AddOrderService(
     IOrderRepository orderRepository,
-    IValidator<AddOrderRequest> validator)
+    IValidator<AddOrderRequest> validator,
+    ILogger<AddOrderService> logger)
 {
     public async Task<Result> ExecuteAsync(
         AddOrderRequest request,
@@ -22,6 +24,8 @@ public class AddOrderService(
         var result = await orderRepository.AddOrderAsync(order, cancellationToken);
         if (result.IsFailure)
             return result.ErrorList;
+        
+        logger.LogInformation("Added order with id {id}", order.Id);
         
         return Result.Success();
     }

@@ -13,7 +13,6 @@ public class OrderRepository(string ordersPath, string districtsPath, string del
             File.Create(ordersPath);
 
         var districtResult = await GetDistrict(order.District.Value, cancellationToken);
-
         if (districtResult.IsFailure)
             return districtResult.ErrorList;
 
@@ -27,6 +26,10 @@ public class OrderRepository(string ordersPath, string districtsPath, string del
         DateTime firstOrderTime,
         CancellationToken cancellationToken = default)
     {
+        var districtResult = await GetDistrict(district, cancellationToken);
+        if (districtResult.IsFailure)
+            return districtResult.ErrorList;
+        
         if (File.Exists(ordersPath) == false)
             return Error.FileNotExist("Orders ");
 

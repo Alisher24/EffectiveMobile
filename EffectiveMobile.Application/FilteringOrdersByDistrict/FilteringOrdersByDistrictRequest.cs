@@ -1,3 +1,3 @@
 ﻿namespace EffectiveMobile.Application.FilteringOrdersByDistrict;
 
-public record FilteringOrdersByDistrictRequest(string District, DateTime FirstDeliveryTime);
+public record FilteringOrdersByDistrictRequest(string District, string FirstDeliveryTime);

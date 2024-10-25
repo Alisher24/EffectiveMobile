@@ -1,3 +1,3 @@
 ﻿namespace EffectiveMobile.Application.AddOrder;
 
-public record AddOrderRequest(float Weight, string District, DateTime DeliveryTime);
+public record AddOrderRequest(float Weight, string District, string DeliveryTime);

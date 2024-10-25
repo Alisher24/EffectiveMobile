@@ -8,11 +8,15 @@ public record DeliveryTime : ValueObject<DateTime>
     {
     }
 
-    public static Result<DeliveryTime> Create(DateTime deliveryTime)
+    public static Result<DeliveryTime> Create(string deliveryTime)
     {
-        if (deliveryTime < DateTime.Now)
+        var parseResult = DateTime.TryParse(deliveryTime, out var deliveryTimeParse);
+        if (parseResult == false)
             return Error.ValueIsInvalid("Delivery time");
 
-        return new DeliveryTime(deliveryTime);
+        if (deliveryTimeParse < DateTime.Now)
+            return Error.ValueIsInvalid("Delivery time");
+
+        return new DeliveryTime(deliveryTimeParse);
     }
 }
