@@ -1,15 +1,33 @@
+using System.Reflection;
 using EffectiveMobile.Application;
 using EffectiveMobile.Application.AddOrder;
 using EffectiveMobile.Application.FilteringOrdersByDistrict;
 using EffectiveMobile.Infrastructure;
 using FluentValidation;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "EffectiveMobile.Api",
+        Contact = new OpenApiContact
+        {
+            Name = "Alisher",
+            Email = "baiyskulov.alisher@gmail.com",
+            Url = new Uri("https://t.me/alisher24_8")
+        }
+    });
+    
+    var xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFileName));
+});
 
 var logFile = builder.Configuration["Data:LogPath"] ?? throw new ArgumentNullException();
 if (File.Exists(logFile) == false)

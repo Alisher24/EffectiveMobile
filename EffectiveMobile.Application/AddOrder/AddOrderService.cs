@@ -11,6 +11,12 @@ public class AddOrderService(
     IValidator<AddOrderRequest> validator,
     ILogger<AddOrderService> logger)
 {
+    /// <summary>
+    /// Added order
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<Result> ExecuteAsync(
         AddOrderRequest request,
         CancellationToken cancellationToken = default)

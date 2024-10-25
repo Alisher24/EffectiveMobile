@@ -9,6 +9,12 @@ public class FilteringOrdersByDistrictService(
     IValidator<FilteringOrdersByDistrictRequest> validator,
     ILogger<FilteringOrdersByDistrictService> logger)
 {
+    /// <summary>
+    /// Filtering orders for delivery to a specific area of the city in the next half hour after the time of the first order
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<Result<List<OrderDto>>> ExecuteAsync(
         FilteringOrdersByDistrictRequest request,
         CancellationToken cancellationToken = default)
